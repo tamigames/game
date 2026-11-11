@@ -1143,6 +1143,7 @@
       <div class="name-input-wrap">
         <label for="player-name-input">お名前（フルネーム・記録用）</label>
         <input type="text" id="player-name-input" placeholder="例：情報太郎" maxlength="40">
+        <p id="name-error" style="display:none;margin:6px 0 0;font-size:12.5px;color:#e8b9b3;font-weight:700;">お名前を入力してください（本番を始めるのに必要です）</p>
       </div>
 
       <p class="start-note" id="start-note">初めての方は、まず練習問題（2問・成績には記録されません）で操作を確認するのがおすすめです。</p>
@@ -3550,6 +3551,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => bgmPreload(["normal"]), 2500); // 練習・本番用を先読み
   });
   document.getElementById("btn-start").addEventListener("click", startGame);
+  (function(){ const ni=document.getElementById("player-name-input"), ne=document.getElementById("name-error");
+    if(ni&&ne) ni.addEventListener("input",()=>{ if(ni.value.trim()) ne.style.display="none"; }); })();
   document.getElementById("btn-tutorial").addEventListener("click", startTutorial);
   document.getElementById("btn-toggle-all").addEventListener("click", () => {
     const items = Array.from(document.querySelectorAll("#result-table .result-item"));
@@ -3765,9 +3768,17 @@ function nextTutorial(){
 }
 
 function startGame(){
-  state.tutorial = false;
   const nameInput = document.getElementById("player-name-input");
-  state.playerName = nameInput ? nameInput.value.trim() : "";
+  const nameErr = document.getElementById("name-error");
+  const nameVal = nameInput ? nameInput.value.trim() : "";
+  if(!nameVal){                                   // お名前が空なら本番は始められない
+    if(nameErr) nameErr.style.display = "block";
+    if(nameInput){ nameInput.focus(); }
+    return;
+  }
+  if(nameErr) nameErr.style.display = "none";
+  state.tutorial = false;
+  state.playerName = nameVal;
   if(SHUFFLE_ENABLED) shuffleBalanced(QUESTIONS); // プレイのたびにシャッフル（噓あり2問＋噓なし2問の4問1組で出題）
   startBGM();                                       // 通常のプレイ曲へクロスフェード
   setTimeout(() => bgmPreload(["rush","ending"]), 3000); // 残り1分用・エピローグ用を先読み
