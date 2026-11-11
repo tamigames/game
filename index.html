@@ -1136,7 +1136,7 @@
         <li>・<b style="color:#e0b0ab">正解するたびに残り時間が+10秒</b>（噓があってもなくても同じ）加算されます。<b style="color:#e0b0ab">不正解だと残り時間が−3秒</b>になります</li>
         <li>・本日の報酬は<b>基本日給＋インセンティブ制</b>。正解で+1,000円、<b>噓を見抜いて正解すると+2,000円</b>（5連続以上はさらに+500円）。見逃し・誤検出は−1,500円です</li>
         <li>・面談カルテは多数用意されています。時間切れ、または信用度ゼロになった時点で業務終了です</li>
-        <li>・間違えるたびに会社の信用度ハートが1つ減ります（<b style="color:#e0b0ab">信用度は3つからスタートし、0になると強制終了</b>です）</li>
+        <li>・間違えるたびに会社の信用度ハートが1つ減ります（<b style="color:#e0b0ab">信用度は5つからスタートし、0になると強制終了</b>です）</li>
         <li>・キーボードでも操作できます：<kbd>W</kbd><kbd>S</kbd>／<kbd>↑</kbd><kbd>↓</kbd>で文を移動、<kbd>Space</kbd>／<kbd>D</kbd>／<kbd>→</kbd>で赤入れ、<kbd>A</kbd>／<kbd>←</kbd>で解除、<kbd>Enter</kbd>で送信・次へ</li>
       </ul>
 
@@ -3422,8 +3422,8 @@ const state = {
 // ★ver.2用：新しいスプレッドシート／Apps Scriptの「ウェブアプリのURL」をここに貼ってください。
 //   （ver.1のURLは使いません。空のままだと、記録は送信されません）
 const GAS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbymebMKpFKntHLo6MOw3NbkhyB-9aqPK4S7aycb2h2oM6p6kKM1GE2PEOCSbrVkhG3o/exec";
-const GAME_VERSION = "ver.2";
-const MAX_HP = 3;
+const GAME_VERSION = "ver.2.1";
+const MAX_HP = 5;
 const TOTAL_TIME = 180; // 3分（全体共有）
 const TIMER_ENABLED = true; // 本番：3分の時間制限を有効化
 const CREDIBILITY_ENABLED = true; // 本番：信用度を有効化
