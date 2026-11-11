@@ -1263,12 +1263,12 @@
       <div class="money-result" id="money-result"></div>
       <div class="stat-strip" id="stat-strip"></div>
       <div class="type-analysis" id="type-analysis"></div>
+      <div class="glossary" id="glossary"></div>
       <div class="result-tools">
         <span class="result-note">各問題の「詳しく見る」で、問題・あなたの回答・正答を確認できます。</span>
         <button class="btn btn-outline" id="btn-toggle-all">すべて詳しく見る</button>
       </div>
       <div class="result-table" id="result-table"></div>
-      <div class="glossary" id="glossary"></div>
       <div class="result-actions">
         <button class="btn btn-primary" id="btn-retry">もう一度プレイする</button>
       </div>
@@ -4706,7 +4706,7 @@ function renderResultScreen(){
     const q = QUESTIONS.find(qq => qq.id === l.id);
     return `<div class="result-item">
       <div class="result-row">
-        <div class="qid">${escapeHtml(l.id)}</div>
+        <div class="qid">${idx + 1}</div>
         <div class="desc">${escapeHtml(q.category)}</div>
         <div class="time">${l.time}秒</div>
         <div class="verdict ${l.correct ? 'ok':'ng'}">${l.correct ? '正解':'不正解'}</div>
@@ -4931,7 +4931,7 @@ function renderTypeAnalysis(){
     ${rows}
     <div class="ta-row" style="grid-template-columns:1fr;"><span class="ta-name" style="font-weight:400;font-size:13px;color:#c8cdd6;">${escapeHtml(kindLine("intrinsic", ki))}　／　${escapeHtml(kindLine("extrinsic", ke))}</span></div>
     <div class="ta-verdict">${lines.map(escapeHtml).join("<br>")}</div>
-    <p class="ta-note">※ プレイした問題数が少ない場合、各分類の出題数も少なくなるため、傾向は目安として見てください。「内在的／外在的」は、AIの文章生成に関する研究（Ji et al., 2023）の分類を、この推薦文の場面に当てはめたものです。</p>
+    <p class="ta-note">※ プレイした問題数が少ない場合、各分類の出題数も少なくなるため、傾向は目安として見てください。</p>
   `;
 }
 
